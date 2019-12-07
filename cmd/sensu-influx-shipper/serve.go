@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-kit/kit/log"
 	"github.com/influxdata/influxdb/client/v2"
-	"github.com/julian7/sensu-influx-handler-server/tcpserver"
+	"github.com/julian7/sensu-influx-shipper/tcpserver"
 	"github.com/spf13/cobra"
 )
 

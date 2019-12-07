@@ -12,7 +12,7 @@ import (
 
 func (rt *Runtime) rootCmd() (*cobra.Command, error) {
 	app := &cobra.Command{
-		Use:   "sensu-influx-handler-server",
+		Use:   "sensu-influx-shipper",
 		Short: "Service for forwarding sensu events to InfluxDB via TCP",
 		Long: `Stand-alone service for receiving events from sensu-go TCP handlers, and
 forwarding them to an InfluxDB server. This approach saves compute resources,
@@ -23,7 +23,7 @@ forwarded to InfluxDB.`,
 	}
 
 	flags := app.PersistentFlags()
-	flags.StringVar(&rt.Config, "config", "", "configuration file (default: /etc/sensu-influx-handler-server[.yml]")
+	flags.StringVar(&rt.Config, "config", "", "configuration file (default: /etc/sensu-influx-shipper[.yml]")
 	flags.StringP("logformat", "F", "logfmt", "log format. Possible values: logfmt, or json")
 	flags.StringP("logfile", "L", "stderr", "log file. Possible values: none, stdout, stderr, or file name")
 

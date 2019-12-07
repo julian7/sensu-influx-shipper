@@ -13,4 +13,4 @@ Added:
 - configuration from file
 - serve subcommand
 
-[Unreleased]: https://github.com/julian7/sensu-influx-handler-server
+[Unreleased]: https://github.com/julian7/sensu-influx-shipper

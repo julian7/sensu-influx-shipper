@@ -33,7 +33,7 @@ func (rt *Runtime) Init() {
 	} else {
 		rt.Viper.AddConfigPath("/etc")
 		rt.Viper.AddConfigPath("$HOME")
-		rt.Viper.SetConfigName("sensu-influx-handler-server")
+		rt.Viper.SetConfigName("sensu-influx-shipper")
 	}
 
 	rt.Viper.AutomaticEnv()

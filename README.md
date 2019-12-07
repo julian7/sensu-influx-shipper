@@ -1,4 +1,4 @@
-# Sensu-go Influx handler server
+# Sensu-go Influx shipper
 
 This is a simple TCP server to take [sensu-go handlers](https://docs.sensu.io/sensu-go/latest/reference/handlers/#tcp-udp-handlers) data in TCP, and forward them to an InfluxDB server.
 
@@ -24,7 +24,7 @@ Use [mage](https://magefile.org/) to build: `mage all`. This will do a full buil
 Sensu-go event consuming TCP server for InfluxDB data shipping
 
 Usage:
-  sensu-influx-handler-server serve [flags]
+  sensu-influx-shipper serve [flags]
 
 Flags:
   -a, --addr string       InfluxDB's TCP port (default "http://127.0.0.1:8086")
@@ -35,7 +35,7 @@ Flags:
   -u, --user string       InfluxDB username (default "metrics")
 
 Global Flags:
-      --config string      configuration file (default: /etc/sensu-influx-handler-server[.yml]
+      --config string      configuration file (default: /etc/sensu-influx-shipper[.yml]
   -L, --logfile string     log file. Possible values: none, stdout, stderr, or file name (default "stderr")
   -F, --logformat string   log format. Possible values: logfmt, or json (default "logfmt")
 ```

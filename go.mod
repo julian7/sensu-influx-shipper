@@ -1,4 +1,4 @@
-module github.com/julian7/sensu-influx-handler-server
+module github.com/julian7/sensu-influx-shipper
 
 go 1.13
 

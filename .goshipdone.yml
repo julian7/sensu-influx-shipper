@@ -3,7 +3,7 @@ builds:
   - type: go
     id: build
     ldflags: "-s -w -X main.version={{.Version}}"
-    main: ./cmd/sensu-influx-handler-server
+    main: ./cmd/sensu-influx-shipper
     output: "{{.ProjectName}}-{{.Version}}-{{.OS}}-{{.Arch}}{{.Ext}}"
     goos:
       - linux
@@ -23,5 +23,5 @@ publishes:
     builds:
       - build
     owner: julian7
-    name: sensu-influx-handler-server
+    name: sensu-influx-shipper
     release_notes: changelog
