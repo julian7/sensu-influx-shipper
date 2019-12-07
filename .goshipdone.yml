@@ -4,7 +4,7 @@ builds:
     id: build
     ldflags: "-s -w -X main.version={{.Version}}"
     main: ./cmd/sensu-influx-handler-server
-    output: "bin/sensu-influx-handler-server{{.Ext}}"
+    output: "{{.ProjectName}}-{{.Version}}-{{.OS}}-{{.Arch}}{{.Ext}}"
     goos:
       - linux
       - windows
@@ -18,19 +18,10 @@ archives:
   - type: upx
     builds:
       - build
-  - type: tar
-    builds:
-      - build
-    commondir: ""
-    compression: gzip
-  - type: sensu-asset
-    build: archive
-    asset_url: "https://github.com/julian7/{{.ProjectName}}/releases/download/{{.Version}}/{{.ArchiveName}}"
 publishes:
   - type: github
     builds:
-      - archive
-      - sensu-asset
+      - build
     owner: julian7
     name: sensu-influx-handler-server
     release_notes: changelog

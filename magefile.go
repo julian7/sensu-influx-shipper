@@ -8,7 +8,6 @@ import (
 	"os/exec"
 
 	"github.com/julian7/goshipdone"
-	"github.com/julian7/sensulib/sensuasset"
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
@@ -22,7 +21,6 @@ func step(name string) {
 // All builds for all possible targets
 func All() error {
 	step("all")
-	sensuasset.Register()
 	if err := goshipdone.Run(""); err != nil {
 		return err
 	}

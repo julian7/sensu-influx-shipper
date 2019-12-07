@@ -10,7 +10,6 @@ require (
 	github.com/influxdata/influxdb v1.7.9
 	github.com/json-iterator/go v1.1.8 // indirect
 	github.com/julian7/goshipdone v0.3.0
-	github.com/julian7/sensulib v0.1.3
 	github.com/magefile/mage v1.9.0
 	github.com/robertkrimen/otto v0.0.0-20180617131154-15f95af6e78d // indirect
 	github.com/robfig/cron v1.2.0 // indirect

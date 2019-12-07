@@ -78,11 +78,8 @@ github.com/json-iterator/go v1.1.8 h1:QiWkFLKq0T7mpzwOTu6BzNDbfTE8OLrYhVKYMLF46O
 github.com/json-iterator/go v1.1.8/go.mod h1:KdQUCv79m/52Kvf8AW2vK1V8akMuk1QjK/uOdHXbAo4=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
-github.com/julian7/goshipdone v0.2.0/go.mod h1:QEYrERF9EZu2JJ33tHVwZyfiE1Q2f/zmt1MRGdoSmAs=
 github.com/julian7/goshipdone v0.3.0 h1:pvhhEc5A9joVwLg4/ZphyE9RPnsvih9IacjRb3B5bg0=
 github.com/julian7/goshipdone v0.3.0/go.mod h1:aaXTbZKzhSSWBUzPzfpIT3KYuSlILJtSg6Ar6kd10PA=
-github.com/julian7/sensulib v0.1.3 h1:2QOIxWD9E+n6NJehULAs5YoIJkFeZdqLLmn37/eRwn4=
-github.com/julian7/sensulib v0.1.3/go.mod h1:S6pWjJ2/F7eRb8ApQZ7gFj9JSQ9SJbu4RKS96+CJkvQ=
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
