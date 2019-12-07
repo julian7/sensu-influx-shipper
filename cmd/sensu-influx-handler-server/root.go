@@ -53,8 +53,8 @@ func (rt *Runtime) SetupLogging(*cobra.Command, []string) error {
 
 	var logger log.Logger
 
-	format := rt.Viper.GetString("logformat")
-	output := rt.Viper.GetString("logfile")
+	format := rt.GetString("logformat")
+	output := rt.GetString("logfile")
 
 	switch output {
 	case "none":
