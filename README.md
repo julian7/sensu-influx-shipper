@@ -18,6 +18,46 @@ The original handler is a simple, raw in to raw out data interface adapter. Howe
 
 Use [mage](https://magefile.org/) to build: `mage all`. This will do a full build into `dist/` subfolder. To do a build with publishing results, run `mage publish`.
 
+## Usage
+
+```text
+Sensu-go event consuming TCP server for InfluxDB data shipping
+
+Usage:
+  sensu-influx-handler-server serve [flags]
+
+Flags:
+  -a, --addr string       InfluxDB's TCP port (default "http://127.0.0.1:8086")
+  -d, --database string   InfluxDB database (default "metrics")
+  -h, --help              help for serve
+  -l, --listen string     TCP port to listen to (default "127.0.0.1:3333")
+  -p, --pass string       InfluxDB password
+  -u, --user string       InfluxDB username (default "metrics")
+
+Global Flags:
+      --config string      configuration file (default: /etc/sensu-influx-handler-server[.yml]
+  -L, --logfile string     log file. Possible values: none, stdout, stderr, or file name (default "stderr")
+  -F, --logformat string   log format. Possible values: logfmt, or json (default "logfmt")
+```
+
+This command runs a TCP server on `listen` port (port number or on a specific interface in `ip:port` format), and accepts from [sensu go events](https://docs.sensu.io/sensu-go/5.15/reference/events/). Then it ships metric data found in events to an InfluxDB service (see `addr`, `database`, `user`, `pass` options).
+
+The application accepts a configuration file too, of the following structure (the example is YAML-formatted, but other formats are supported by [cobra](https://github.com/spf13/cobra)):
+
+```yaml
+---
+logfile: "log file"
+logformat: "log format"
+serve:
+    addr: "InfluxDB server URL"
+    database: "InfluxDB database name"
+    listen: "local TCP server listen port"
+    pass: "InfluxDB password"
+    user: "InfluxDB user"
+```
+
+Alternatively, configuration can come from environment variables, like `LOGFORMAT` or `SERVE_LISTEN`.
+
 ## Legal
 
 This project is licensed under [Blue Oak Model License v1.0.0](https://blueoakcouncil.org/license/1.0.0). It is not registered either at OSI or GNU, therefore GitHub is widely looking at the other direction. However, this is the license I'm most happy with: you can read and understand it with no legal degree, and there are no hidden or cryptic meanings in it.
