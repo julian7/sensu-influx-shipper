@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/go-kit/kit/log"
 	"github.com/spf13/cobra"
@@ -36,6 +37,7 @@ func (rt *Runtime) Init() {
 	}
 
 	rt.Viper.AutomaticEnv()
+	rt.Viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if err := rt.Viper.ReadInConfig(); err == nil {
 		_ = rt.Log("msg", "reading config", "file", rt.Viper.ConfigFileUsed())

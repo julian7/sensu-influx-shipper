@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Added:
 
+- configuration from environment variables
 - configuration from file
 - serve subcommand
 
