@@ -32,6 +32,17 @@ forwarded to InfluxDB.`,
 		return nil, err
 	}
 
+	for _, cmdFunc := range []func() (*cobra.Command, error){
+		rt.serveCmd,
+	} {
+		cmd, err := cmdFunc()
+		if err != nil {
+			return nil, err
+		}
+
+		app.AddCommand(cmd)
+	}
+
 	return app, nil
 }
 

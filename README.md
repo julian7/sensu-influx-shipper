@@ -6,6 +6,18 @@ The rationale is simple: even if you have a medium-sized setting, metrics will c
 
 This application can easily replace [sensu-influxdb-handler](https://github.com/sensu/sensu-influxdb-handler) by using a slightly different configuration.
 
+## Differences to sensu-influxdb-handler
+
+The original handler is a simple, raw in to raw out data interface adapter. However, when the metric collector is outputting in graphite format, no tags will be saved. We try to set the following default tags to each data point, as defaults:
+
+* host: entity's name
+* ip: entity's first IP address of the first physical interface
+* check: check's name
+
+## Compile from source
+
+Use [mage](https://magefile.org/) to build: `mage all`. This will do a full build into `dist/` subfolder. To do a build with publishing results, run `mage publish`.
+
 ## Legal
 
 This project is licensed under [Blue Oak Model License v1.0.0](https://blueoakcouncil.org/license/1.0.0). It is not registered either at OSI or GNU, therefore GitHub is widely looking at the other direction. However, this is the license I'm most happy with: you can read and understand it with no legal degree, and there are no hidden or cryptic meanings in it.
