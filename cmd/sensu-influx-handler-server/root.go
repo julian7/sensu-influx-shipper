@@ -25,7 +25,7 @@ forwarded to InfluxDB.`,
 	flags := app.PersistentFlags()
 	flags.StringVar(&rt.Config, "config", "", "configuration file (default: /etc/sensu-influx-handler-server[.yml]")
 	flags.StringP("logformat", "F", "logfmt", "log format. Possible values: logfmt, or json")
-	flags.StringP("logfile", "L", "stderr", "log file. Possible values: stdout, stderr, or file name")
+	flags.StringP("logfile", "L", "stderr", "log file. Possible values: none, stdout, stderr, or file name")
 
 	err := viper.BindPFlags(flags)
 	if err != nil {
