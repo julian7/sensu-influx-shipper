@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+No changes so far.
+
+## [v0.2.0] - 2019-12-07
+
 Added:
 
 - grouping
@@ -19,5 +23,6 @@ Added:
 - configuration from file
 - serve subcommand
 
-[Unreleased]: https://github.com/julian7/sensu-influx-shipper/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/julian7/sensu-influx-shipper/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/julian7/sensu-influx-shipper/compare/v0.1.0...v0.2.0
 [v0.1.0]: https://github.com/julian7/sensu-influx-shipper/releases/tag/v0.1.0
