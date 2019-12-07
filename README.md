@@ -6,6 +6,8 @@ The rationale is simple: even if you have a medium-sized setting, metrics will c
 
 This application can easily replace [sensu-influxdb-handler](https://github.com/sensu/sensu-influxdb-handler) by using a slightly different configuration.
 
+**WARNING:** This is an insecure service. There is no protection at any level. Never expose it to untrusted network. Use of transport security (for example a secure mesh network) is highly advised.
+
 ## Differences to sensu-influxdb-handler
 
 The original handler is a simple, raw in to raw out data interface adapter. However, when the metric collector is outputting in graphite format, no tags will be saved. We try to set the following default tags to each data point, as defaults:
