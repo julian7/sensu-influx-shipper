@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Added:
 
+- configuration from file
 - serve subcommand
 
 [Unreleased]: https://github.com/julian7/sensu-influx-handler-server
