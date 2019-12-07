@@ -3,7 +3,6 @@ package tcpserver
 import (
 	"errors"
 	"io"
-	"strings"
 	"time"
 
 	"github.com/go-kit/kit/log"
@@ -13,7 +12,8 @@ import (
 type Conn struct {
 	log.Logger
 	client.Client
-	DB string
+	Grouping bool
+	DB       string
 }
 
 func (c *Conn) handle(reader io.Reader) {
@@ -27,6 +27,18 @@ func (c *Conn) handle(reader io.Reader) {
 		return
 	}
 
+	bp, err := c.BatchMetrics(event)
+	if err != nil {
+		c.logError(err)
+		return
+	}
+
+	if err := c.Client.Write(bp); err != nil {
+		c.logError(NewError("write metric point", err))
+	}
+}
+
+func (c *Conn) BatchMetrics(event *Event) (client.BatchPoints, error) {
 	baseTags := event.BaseTags()
 
 	bp, err := client.NewBatchPoints(client.BatchPointsConfig{
@@ -34,8 +46,7 @@ func (c *Conn) handle(reader io.Reader) {
 		Precision: "s",
 	})
 	if err != nil {
-		c.logError(NewError("set batch points", err))
-		return
+		return nil, NewError("set batch points", err)
 	}
 
 	for _, point := range event.Metrics.Points {
@@ -51,13 +62,10 @@ func (c *Conn) handle(reader io.Reader) {
 			tags[tag.Name] = tag.Value
 		}
 
-		tokens := strings.Split(point.Name, ".")
-		name := tokens[0]
+		name, key, metric := splitName(point.Name, c.Grouping)
 
-		if len(tokens) > 1 {
-			key = strings.Join(tokens[1:], ".")
-		} else {
-			key = "value"
+		if len(metric) > 0 {
+			tags["metric"] = metric
 		}
 
 		fields := map[string]interface{}{key: point.Value}
@@ -70,9 +78,7 @@ func (c *Conn) handle(reader io.Reader) {
 		bp.AddPoint(pt)
 	}
 
-	if err := c.Client.Write(bp); err != nil {
-		c.logError(NewError("write metric point", err))
-	}
+	return bp, nil
 }
 
 func (c *Conn) logError(err error) {

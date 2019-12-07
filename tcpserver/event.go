@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io"
 	"io/ioutil"
+	"strings"
 
 	"github.com/sensu/sensu-go/types"
 )
@@ -67,4 +68,27 @@ func (e *Event) BaseTags() map[string]string {
 	}
 
 	return tags
+}
+
+func splitName(pointName string, grouping bool) (name, key, metric string) {
+	tokens := strings.Split(pointName, ".")
+	name = tokens[0]
+
+	if len(tokens) > 1 {
+		if grouping {
+			if len(tokens) > 2 {
+				metric = strings.Join(tokens[1:len(tokens)-1], ".")
+				key = "_" + tokens[len(tokens)-1]
+			} else {
+				metric = tokens[1]
+				key = "value"
+			}
+		} else {
+			key = strings.Join(tokens[1:], ".")
+		}
+	} else {
+		key = "value"
+	}
+
+	return
 }

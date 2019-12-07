@@ -18,7 +18,8 @@ type Serv struct {
 	log.Logger
 	Listener
 	client.Client
-	DB string
+	DB       string
+	Grouping bool
 }
 
 type Accepter interface {
@@ -114,9 +115,10 @@ func (s *Serv) runloop(l Accepter) error {
 
 func (s *Serv) handle(conn net.Conn, wg *sync.WaitGroup) {
 	data := &Conn{
-		Client: s.Client,
-		DB:     s.DB,
-		Logger: log.With(s.Logger, "remote", conn.RemoteAddr()),
+		Client:   s.Client,
+		DB:       s.DB,
+		Grouping: s.Grouping,
+		Logger:   log.With(s.Logger, "remote", conn.RemoteAddr()),
 	}
 
 	data.handle(conn)

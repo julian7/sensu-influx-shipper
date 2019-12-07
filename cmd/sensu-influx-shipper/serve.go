@@ -23,6 +23,7 @@ func (rt *Runtime) serveCmd() (*cobra.Command, error) {
 	flags.StringP("listen", "l", "127.0.0.1:3333", "TCP port to listen to")
 	flags.StringP("addr", "a", "http://127.0.0.1:8086", "InfluxDB's TCP port")
 	flags.StringP("database", "d", "metrics", "InfluxDB database")
+	flags.BoolP("grouping", "g", false, "Group metric data")
 	flags.StringP("user", "u", "metrics", "InfluxDB username")
 	flags.StringP("pass", "p", "", "InfluxDB password")
 
@@ -46,7 +47,8 @@ func (rt *Runtime) serveRun(*cobra.Command, []string) error {
 	}
 
 	serv := tcpserver.New(log.With(rt.Logger, "listen", rt.GetString("serve.listen")))
-	serv.InfluxConn(c, rt.GetString("serve.name"))
+	serv.Grouping = rt.GetBool("serve.grouping")
+	serv.InfluxConn(c, rt.GetString("serve.database"))
 
 	return serv.Run(rt.GetString("serve.listen"))
 }

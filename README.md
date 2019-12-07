@@ -14,6 +14,18 @@ The original handler is a simple, raw in to raw out data interface adapter. Howe
 * ip: entity's first IP address of the first physical interface
 * check: check's name
 
+The application is also able to group metric data. By default, it splits metric names by the first dot, using the first part for metric name, and use the rest as metric key. If there are no dots in the name, metric key will use "value".
+
+When grouping is enabled, metric key will take the value of the original name's last piece prefixed by an underscore, and the middle of the key will go to the "metric" tag. This setting can be very handy for graphite_plaintext input, displayed on Grafana.
+
+Examples:
+
+| original key  | influx name | influx key (grouped: false) | influx key (grouped: true) | extra tag (grouped: true) |
+| :------------ | :---------- | :-------------------------- | :------------------------- | :------------------------ |
+| disk          | disk        | value                       | value                      | (none)                    |
+| disk.free     | disk        | free                        | value                      | metric=free               |
+| disk.var.free | disk        | var.free                    | _free                      | metric=var                |
+
 ## Compile from source
 
 Use [mage](https://magefile.org/) to build: `mage all`. This will do a full build into `dist/` subfolder. To do a build with publishing results, run `mage publish`.
@@ -29,6 +41,7 @@ Usage:
 Flags:
   -a, --addr string       InfluxDB's TCP port (default "http://127.0.0.1:8086")
   -d, --database string   InfluxDB database (default "metrics")
+  -g, --grouping          Group metric data
   -h, --help              help for serve
   -l, --listen string     TCP port to listen to (default "127.0.0.1:3333")
   -p, --pass string       InfluxDB password
@@ -42,6 +55,8 @@ Global Flags:
 
 This command runs a TCP server on `listen` port (port number or on a specific interface in `ip:port` format), and accepts from [sensu go events](https://docs.sensu.io/sensu-go/5.15/reference/events/). Then it ships metric data found in events to an InfluxDB service (see `addr`, `database`, `user`, `pass` options).
 
+## Configuration
+
 The application accepts a configuration file too, of the following structure (the example is YAML-formatted, but other formats are supported by [cobra](https://github.com/spf13/cobra)):
 
 ```yaml
@@ -51,6 +66,7 @@ logformat: "log format"
 serve:
     addr: "InfluxDB server URL"
     database: "InfluxDB database name"
+    grouping: true
     listen: "local TCP server listen port"
     pass: "InfluxDB password"
     user: "InfluxDB user"
