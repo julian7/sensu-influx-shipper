@@ -1,0 +1,4 @@
+/sensu-influx-handler-server
+/sum.cov
+/dist
+/.goshipdone.local.yml

@@ -1,0 +1,36 @@
+---
+builds:
+  - type: go
+    id: build
+    ldflags: "-s -w -X main.version={{.Version}}"
+    main: ./cmd/sensu-influx-handler-server
+    output: "bin/sensu-influx-handler-server{{.Ext}}"
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+    before:
+      - go mod tidy
+archives:
+  - type: changelog
+    id: changelog
+  - type: upx
+    builds:
+      - build
+  - type: tar
+    builds:
+      - build
+    commondir: ""
+    compression: gzip
+  - type: sensu-asset
+    build: archive
+    asset_url: "https://github.com/julian7/{{.ProjectName}}/releases/download/{{.Version}}/{{.ArchiveName}}"
+publishes:
+  - type: github
+    builds:
+      - archive
+      - sensu-asset
+    owner: julian7
+    name: sensu-influx-handler-server
+    release_notes: changelog
