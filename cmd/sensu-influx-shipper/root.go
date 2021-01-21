@@ -7,7 +7,6 @@ import (
 
 	"github.com/go-kit/kit/log"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 func (rt *Runtime) rootCmd() (*cobra.Command, error) {
@@ -27,7 +26,7 @@ forwarded to InfluxDB.`,
 	flags.StringP("logformat", "F", "logfmt", "log format. Possible values: logfmt, or json")
 	flags.StringP("logfile", "L", "stderr", "log file. Possible values: none, stdout, stderr, or file name")
 
-	err := viper.BindPFlags(flags)
+	err := rt.Viper.BindPFlags(flags)
 	if err != nil {
 		return nil, err
 	}
