@@ -12,11 +12,10 @@ import (
 
 func (rt *Runtime) serveCmd() (*cobra.Command, error) {
 	cmd := &cobra.Command{
-		Use:           "serve",
-		Short:         "Sensu-go event consuming TCP server for InfluxDB data shipping",
-		RunE:          rt.serveRun,
-		SilenceErrors: true,
-		SilenceUsage:  true,
+		Use:          "serve",
+		Short:        "Sensu-go event consuming TCP server for InfluxDB data shipping",
+		RunE:         rt.serveRun,
+		SilenceUsage: true,
 	}
 
 	flags := cmd.Flags()
