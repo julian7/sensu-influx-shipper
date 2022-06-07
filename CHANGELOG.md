@@ -11,6 +11,7 @@ Changed:
 
 - Updated dependencies as of Jun 7, 2022
 - Replace `github.com/go-kit/kit/log` with `github.com/go-kit/log`, as it has been spun off
+- Changed main branch to `main`
 
 ## [v0.3.0] - 2021-01-21
 
