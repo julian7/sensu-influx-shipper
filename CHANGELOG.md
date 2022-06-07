@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-No changes so far.
+Changed:
+
+- Updated dependencies as of Jun 7, 2022
+- Replace `github.com/go-kit/kit/log` with `github.com/go-kit/log`, as it has been spun off
 
 ## [v0.3.0] - 2021-01-21
 

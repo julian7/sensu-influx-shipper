@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 	"github.com/spf13/cobra"
 )
 

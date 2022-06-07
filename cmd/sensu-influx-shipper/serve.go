@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 	"github.com/influxdata/influxdb/client/v2"
 	"github.com/julian7/sensu-influx-shipper/tcpserver"
 	"github.com/spf13/cobra"
